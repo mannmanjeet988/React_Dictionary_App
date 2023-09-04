@@ -89,6 +89,13 @@ input{
   border-radius: 5px;
 }
 
+.word{
+  font-size: 24px;
+  font-weight: 700;
+  text-align: left;
+  color:blueviolet
+}
+
 h2 {
   text-align: left;
   color:tomato;

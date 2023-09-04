@@ -1,10 +1,17 @@
 import {createStore ,applyMiddleware} from "redux"
+import { combineReducers } from "redux"; 
 
+import apiReducer from "./reducer/apiReducer";
+import historyReducer from "./reducer/historyReducer";
 import thunk from "redux-thunk"
 
 
-import apiReducer from "./reducer/apiReducer";
+export const rootReducer = combineReducers({
+    homeData : apiReducer,
+    historyData : historyReducer
+})
 
-const store = createStore(apiReducer, applyMiddleware(thunk));
+export const store = createStore(rootReducer, applyMiddleware(thunk));
 
-export default store;
+
+ 

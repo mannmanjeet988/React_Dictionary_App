@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Loading, Success, Error } from "../redux/actions/apiCalls";
+import addToHistory from "../redux/actions/historyActions";
 import axios from "axios";
 import { fetchMeaning } from "../redux/actions/apiCalls";
 import { v4 as uuidv4 } from "uuid";
 
 const Home = () => {
-  const { loading, data, error } = useSelector((state) => state);
-  const [searchTerm, setSearchTerm] = useState(" ");
+  const { loading, data, error } = useSelector((state) => state.homeData);
+ 
+  const [searchTerm, setSearchTerm] = useState("");
 
   const dispatch = useDispatch();
 
@@ -15,7 +17,12 @@ const Home = () => {
 
   useEffect(() => {
     dispatch(fetchMeaning(searchTerm));
-  }, [dispatch]);
+    dispatch(addToHistory(searchTerm))
+  }, []);
+
+  
+
+  
 
   // const item1 = data[0]
   // const uniquePhonetics = [];
@@ -31,13 +38,23 @@ const Home = () => {
         type="text"
         placeholder="Enter Word Here!"
         onChange={(e) => setSearchTerm(e.target.value)}
-      ></input>
+      >
+        
+      </input>
+
       <button
         className="btn"
         onClick={() => dispatch(fetchMeaning(searchTerm))}
+        disabled={!searchTerm}
       >
         Search
       </button>
+      {/* <button
+        className="btn"
+        onClick={()=>setSearchTerm("")}
+      >
+        Reset
+      </button> */}
 
       {!loading && !data && <div>Loading...</div>}
       {loading && data ? (
@@ -45,6 +62,7 @@ const Home = () => {
           {data.map((item) => (
             <div key={uuidv4()}>
               <div>
+                <h2 className="word">{item.word}</h2>
                 <h3>Part Of Speech:</h3>
                 <li>{item.meanings[0].partOfSpeech}</li>
 

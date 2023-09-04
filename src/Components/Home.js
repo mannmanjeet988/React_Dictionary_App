@@ -15,10 +15,10 @@ const Home = () => {
 
   console.log({ loading, error, data });
 
-  useEffect(() => {
-    dispatch(fetchMeaning(searchTerm));
-    dispatch(addToHistory(searchTerm));
-  }, []);
+  // useEffect(() => {
+  //   dispatch(fetchMeaning(searchTerm));
+  //
+  // }, []);
 
   // const item1 = data[0]
   // const uniquePhonetics = [];
@@ -28,6 +28,11 @@ const Home = () => {
   //   }
   // });
 
+  function handleClick() {
+    dispatch(fetchMeaning(searchTerm));
+    dispatch(addToHistory(searchTerm));
+  }
+
   return (
     <div className="home">
       <input
@@ -36,11 +41,7 @@ const Home = () => {
         onChange={(e) => setSearchTerm(e.target.value)}
       ></input>
 
-      <button
-        className="btn"
-        onClick={() => dispatch(fetchMeaning(searchTerm))}
-        disabled={!searchTerm}
-      >
+      <button className="btn" onClick={handleClick} disabled={!searchTerm}>
         Search
       </button>
       {/* <button

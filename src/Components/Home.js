@@ -8,7 +8,7 @@ import { v4 as uuidv4 } from "uuid";
 
 const Home = () => {
   const { loading, data, error } = useSelector((state) => state.homeData);
- 
+
   const [searchTerm, setSearchTerm] = useState("");
 
   const dispatch = useDispatch();
@@ -17,12 +17,8 @@ const Home = () => {
 
   useEffect(() => {
     dispatch(fetchMeaning(searchTerm));
-    dispatch(addToHistory(searchTerm))
+    dispatch(addToHistory(searchTerm));
   }, []);
-
-  
-
-  
 
   // const item1 = data[0]
   // const uniquePhonetics = [];
@@ -38,9 +34,7 @@ const Home = () => {
         type="text"
         placeholder="Enter Word Here!"
         onChange={(e) => setSearchTerm(e.target.value)}
-      >
-        
-      </input>
+      ></input>
 
       <button
         className="btn"

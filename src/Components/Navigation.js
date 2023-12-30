@@ -1,5 +1,5 @@
 import React from "react"
-import {NavLink,Outlet} from "react-router-dom"
+import {Link,Outlet} from "react-router-dom"
 
 
 
@@ -11,8 +11,8 @@ const Navigation = () => {
            <h1>Oxford Dictionary</h1> 
         </div>
         <div className="links">
-            <span><NavLink to ="/">Home</NavLink></span>
-            <span><NavLink to ="/history">History</NavLink></span>
+            <span><Link to ="/React_Dictionary_App">Home</Link></span>
+            <span><Link to ="/history">History</Link></span>
         </div>
         <Outlet />
     </div>

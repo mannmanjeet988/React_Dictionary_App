@@ -13,7 +13,7 @@ function App() {
 
       <Routes>
        
-            <Route path="/"   element={<Home/>} />
+            <Route path="/React_Dictionary_App"   element={<Home/>} />
             <Route path="/history"   element={<History/>} />
            
       </Routes> 

@@ -10,7 +10,7 @@ const Home = () => {
   const { loading, data, error } = useSelector((state) => state.homeData);
 
   const [searchTerm, setSearchTerm] = useState("");
-
+   const[show,setShow] =useState(true)
   const dispatch = useDispatch();
 
   console.log({ loading, error, data });
@@ -28,10 +28,17 @@ const Home = () => {
   //   }
   // });
 
+  useEffect(()=>{
+    dispatch(fetchMeaning("recommend"))
+  },[])
+    
+  
+
   function handleClick() {
     dispatch(fetchMeaning(searchTerm));
     dispatch(addToHistory(searchTerm));
     setSearchTerm("");
+    setShow(false)
   }
 
   return (
@@ -42,7 +49,6 @@ const Home = () => {
         onChange={(e) => setSearchTerm(e.target.value)
         } value={searchTerm}
       ></input>
-
       <button className="btn" onClick={()=>handleClick()} disabled={!searchTerm}>
         Search
       </button>
@@ -52,10 +58,11 @@ const Home = () => {
       >
         Reset
       </button> */}
-
+ 
       {!loading && !data && <div>Loading...</div>}
       {loading && data ? (
         <div className="outer-container">
+{show && <h1 className="wordOfTheDay" style={{textAlign:"center",color:"black",fontSize:"24px",marginBottom:"5px",marginTop:"0px"}}>Word of the Day!</h1>}
           {data.map((item) => (
             <div key={uuidv4()}>
               <div>

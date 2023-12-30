@@ -31,6 +31,7 @@ const Home = () => {
   function handleClick() {
     dispatch(fetchMeaning(searchTerm));
     dispatch(addToHistory(searchTerm));
+    setSearchTerm("");
   }
 
   return (
@@ -38,10 +39,11 @@ const Home = () => {
       <input
         type="text"
         placeholder="Enter Word Here!"
-        onChange={(e) => setSearchTerm(e.target.value)}
+        onChange={(e) => setSearchTerm(e.target.value)
+        } value={searchTerm}
       ></input>
 
-      <button className="btn" onClick={handleClick} disabled={!searchTerm}>
+      <button className="btn" onClick={()=>handleClick()} disabled={!searchTerm}>
         Search
       </button>
       {/* <button

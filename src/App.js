@@ -9,14 +9,22 @@ import { Routes,Route } from 'react-router-dom';
 function App() {
   return (
     <div className="App">
-      <Navigation></Navigation>
+       <Navigation></Navigation>
 
       <Routes>
-        <Route  >
+       
             <Route path="/"   element={<Home/>} />
             <Route path="/history"   element={<History/>} />
+           
+      </Routes> 
+
+
+       {/* <Routes>
+        <Route path="/" element={<Navigation/>} >
+            <Route path=""   element={<Home/>} />
+            <Route path="/history"   element={<History/>} />
         </Route>      
-      </Routes>
+      </Routes>  */}
       
     </div>
   );
